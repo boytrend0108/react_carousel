@@ -9,7 +9,9 @@ type Props = {
   frameSize: number,
   setFrameSize: (value: number) => void;
   animationDuration: string,
-  setAnimationDurarion: (value: string) => void
+  setAnimationDuration: (value: string) => void
+  infinite: string,
+  setInfinite: (value: string) => void
 };
 
 export const Settings: React.FC<Props> = ({
@@ -20,7 +22,9 @@ export const Settings: React.FC<Props> = ({
   frameSize,
   setFrameSize,
   animationDuration,
-  setAnimationDurarion,
+  setAnimationDuration,
+  infinite,
+  setInfinite,
 }) => {
   function setWidthForImage(size: number) {
     switch (true) {
@@ -31,6 +35,18 @@ export const Settings: React.FC<Props> = ({
       default:
         setItemWidth(size);
     }
+  }
+
+  function checkBoxHandler(event: { target: { value: string; }; }) {
+    let isInfinite = event.target.value;
+
+    if (isInfinite === 'false') {
+      isInfinite = 'true';
+    } else {
+      isInfinite = 'false';
+    }
+
+    setInfinite(isInfinite);
   }
 
   return (
@@ -92,13 +108,13 @@ export const Settings: React.FC<Props> = ({
           value={animationDuration}
           min="0"
           max="2000"
-          onChange={event => setAnimationDurarion(event.target.value)}
+          onChange={event => setAnimationDuration(event.target.value)}
         />
 
         Animation Duration
       </label>
 
-      {/* <label
+      <label
         htmlFor="Infinite"
         className="settings__label settings__label--checkbox"
       >
@@ -106,16 +122,11 @@ export const Settings: React.FC<Props> = ({
           type="checkbox"
           className="settings__item settings__item--checkbox"
           id="Infinite"
+          value={infinite}
+          onChange={checkBoxHandler}
         />
         Infinite
-      </label> */}
-
-      <button
-        type="reset"
-        className="settings__btn"
-      >
-        Reset
-      </button>
+      </label>
     </form>
   );
 };

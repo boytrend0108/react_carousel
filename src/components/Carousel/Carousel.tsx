@@ -8,7 +8,10 @@ type Props = {
   step: number,
   frameSize: number,
   animationDuration: string,
+  infinite: string,
 };
+
+let i = 0;
 
 export const Carousel: React.FC<Props> = ({
   images,
@@ -16,6 +19,7 @@ export const Carousel: React.FC<Props> = ({
   step,
   frameSize,
   animationDuration,
+  infinite,
 }) => {
   const [shift, setShift] = useState(0);
   const lastPosition = -itemWidth * (images.length - frameSize);
@@ -24,7 +28,15 @@ export const Carousel: React.FC<Props> = ({
   function moveLeft() {
     let nextShift = shift - (itemWidth * step);
 
-    if (lastPosition > nextShift) {
+    i = (i % (images.length - 1)) + 1;
+
+    if (infinite === 'true') {
+      const loop = [...images].splice(i - 1, 1);
+
+      images.unshift();
+
+      images.push(...loop);
+    } else if (lastPosition > nextShift) {
       nextShift = lastPosition;
     }
 
@@ -33,6 +45,14 @@ export const Carousel: React.FC<Props> = ({
 
   function moveRight() {
     let nextShift = shift + (itemWidth * step);
+
+    i = (i % (images.length - 1)) + 1;
+
+    if (infinite === 'true' && shift === 0) {
+      setShift(-1040);
+
+      return;
+    }
 
     if (firstPosition < nextShift) {
       nextShift = firstPosition;
@@ -54,8 +74,8 @@ export const Carousel: React.FC<Props> = ({
             transitionDuration: `${animationDuration}ms`,
           }}
         >
-          {images.map((el, i) => (
-            <li key={el}>
+          {images.map(el => (
+            <li key={Math.random()}>
               <img
                 src={el}
                 alt={String(i)}
@@ -73,7 +93,7 @@ export const Carousel: React.FC<Props> = ({
         className="Carousel__btn"
         type="button"
         onClick={() => moveLeft()}
-        disabled={shift === lastPosition}
+        disabled={shift === lastPosition && infinite === 'false'}
       >
         Prev
       </button>
@@ -81,7 +101,7 @@ export const Carousel: React.FC<Props> = ({
       <button
         className="Carousel__btn"
         type="button"
-        disabled={shift === 0}
+        disabled={shift === 0 && infinite === 'false'}
         onClick={() => moveRight()}
       >
         Next
