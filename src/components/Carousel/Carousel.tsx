@@ -7,6 +7,7 @@ type Props = {
   itemWidth: number;
   step: number,
   frameSize: number,
+  animationDuration: string,
 };
 
 export const Carousel: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const Carousel: React.FC<Props> = ({
   itemWidth,
   step,
   frameSize,
+  animationDuration,
 }) => {
   const [shift, setShift] = useState(0);
   const lastPosition = -itemWidth * (images.length - frameSize);
@@ -47,7 +49,10 @@ export const Carousel: React.FC<Props> = ({
       >
         <ul
           className="Carousel__list"
-          style={{ transform: `translateX(${shift}px)` }}
+          style={{
+            transform: `translateX(${shift}px)`,
+            transitionDuration: `${animationDuration}ms`,
+          }}
         >
           {images.map((el, i) => (
             <li key={el}>

@@ -2,7 +2,6 @@
   &__wrapper {
     width: 260px;
     overflow: hidden;
-    border: 1px solid salmon
   }
 
   &__list {
@@ -10,11 +9,16 @@
     display: flex;
     padding: 0;
     margin: 0;
-    transition: transform 1.5s ease-in-out;
+    transition-property: transform 1.5s ease-in-out;
+    transition-timing-function: ease-in-out;
   }
 
   &__btn {
     cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
 
     &:not([disabled]):hover {
       background-color: #4CAF50;
@@ -22,8 +26,5 @@
       cursor: pointer;
     }
 
-    &:disabled {
-      cursor: not-allowed;
-    }
   }
 }

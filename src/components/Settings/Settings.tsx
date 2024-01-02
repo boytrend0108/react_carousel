@@ -8,6 +8,8 @@ type Props = {
   setStep: (value: number) => void;
   frameSize: number,
   setFrameSize: (value: number) => void;
+  animationDuration: string,
+  setAnimationDurarion: (value: string) => void
 };
 
 export const Settings: React.FC<Props> = ({
@@ -17,6 +19,8 @@ export const Settings: React.FC<Props> = ({
   setStep,
   frameSize,
   setFrameSize,
+  animationDuration,
+  setAnimationDurarion,
 }) => {
   function setWidthForImage(size: number) {
     switch (true) {
@@ -77,7 +81,7 @@ export const Settings: React.FC<Props> = ({
         Frame Size
       </label>
 
-      {/* <label
+      <label
         htmlFor="Duration"
         className="settings__label"
       >
@@ -85,15 +89,16 @@ export const Settings: React.FC<Props> = ({
           type="number"
           className="settings__item"
           id="Duration"
-          value="500"
+          value={animationDuration}
           min="0"
           max="2000"
+          onChange={event => setAnimationDurarion(event.target.value)}
         />
 
         Animation Duration
       </label>
 
-      <label
+      {/* <label
         htmlFor="Infinite"
         className="settings__label settings__label--checkbox"
       >

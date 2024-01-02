@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.scss';
+// import './App.scss';
 
 import { Settings } from './components/Settings';
 import { Carousel } from './components/Carousel';
@@ -21,6 +21,7 @@ export const App = () => {
   const [itemWidth, setItemWidth] = useState(130);
   const [step, setStep] = useState(1);
   const [frameSize, setFrameSize] = useState(3);
+  const [animationDuration, setAnimationDuration] = useState('500');
 
   return (
     <div className="App">
@@ -33,6 +34,8 @@ export const App = () => {
         setStep={newStep => setStep(newStep)}
         frameSize={frameSize}
         setFrameSize={newSize => setFrameSize(newSize)}
+        animationDuration={animationDuration}
+        setAnimationDurarion={setAnimationDuration}
       />
 
       <Carousel
@@ -40,6 +43,7 @@ export const App = () => {
         itemWidth={itemWidth}
         step={step}
         frameSize={frameSize}
+        animationDuration={animationDuration}
       />
     </div>
   );
