@@ -1,0 +1,29 @@
+.Carousel {
+  &__wrapper {
+    width: 260px;
+    overflow: hidden;
+    border: 1px solid salmon
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform 1.5s ease-in-out;
+  }
+
+  &__btn {
+    cursor: pointer;
+
+    &:not([disabled]):hover {
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

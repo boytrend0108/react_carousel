@@ -1,0 +1,34 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    display: flex;
+    gap: 10px;
+
+    &--checkbox {
+      padding-left: 106px;
+      cursor: pointer;
+    }
+  }
+
+  &__item {
+    width: 120px;
+
+    &--checkbox {
+      width: fit-content;
+    }
+  }
+
+  &__btn {
+    width: 100px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: teal;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+}
