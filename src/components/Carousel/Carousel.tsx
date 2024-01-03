@@ -103,6 +103,7 @@ export const Carousel: React.FC<Props> = ({
         type="button"
         disabled={shift === 0 && infinite === 'false'}
         onClick={() => moveRight()}
+        data-cy="next"
       >
         Next
       </button>
