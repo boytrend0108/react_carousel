@@ -22,6 +22,8 @@ export const App = () => {
   const [frameSize, setFrameSize] = useState(3);
   const [animationDuration, setAnimationDuration] = useState('500');
   const [infinite, setInfinite] = useState('false');
+  const [carusel, setCarusel] = useState([...images]);
+  const [shift, setShift] = useState(0);
 
   return (
     <div className="App">
@@ -39,16 +41,22 @@ export const App = () => {
         infinite={infinite}
         setInfinite={value => {
           setInfinite(value);
+          if (value === 'false') {
+            setCarusel(images);
+            setShift(0);
+          }
         }}
       />
 
       <Carousel
-        images={images}
+        images={carusel}
         itemWidth={itemWidth}
         step={step}
         frameSize={frameSize}
         animationDuration={animationDuration}
         infinite={infinite}
+        shift={shift}
+        setShift={setShift}
       />
     </div>
   );

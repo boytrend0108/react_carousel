@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import './Carousel.scss';
 
 type Props = {
@@ -9,6 +7,8 @@ type Props = {
   frameSize: number,
   animationDuration: string,
   infinite: string,
+  shift: number,
+  setShift: (value: number) => void,
 };
 
 let i = 0;
@@ -20,8 +20,9 @@ export const Carousel: React.FC<Props> = ({
   frameSize,
   animationDuration,
   infinite,
+  shift,
+  setShift,
 }) => {
-  const [shift, setShift] = useState(0);
   const lastPosition = -itemWidth * (images.length - frameSize);
   const firstPosition = 0;
 
@@ -31,7 +32,7 @@ export const Carousel: React.FC<Props> = ({
     i = (i % (images.length - 1)) + 1;
 
     if (infinite === 'true') {
-      const loop = [...images].splice(i - 1, 1);
+      const loop = [...images].splice(i - 1, step);
 
       images.unshift();
 

@@ -16,7 +16,7 @@
       images={['url1', 'url2']}
       step={3}
       frameSize={3}
-      itemWidth={130} 
+      itemWidth={130}
       animationDuration={1000}
       infinite={false}
     />
@@ -37,7 +37,7 @@
 
 ## Instructions
 
-- Implement a solution following the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline).
+- Implement a solution following the [React task guideline](https://gnithub.com/mate-academy/react_task-guideline#react-tasks-guideline).
 - Use the [React TypeScript cheat sheet](https://mate-academy.github.io/fe-program/js/extra/react-typescript).
 - Open one more terminal and run tests with `npm test` to ensure your solution is correct.
 - Replace `<your_account>` with your Github username in the [DEMO LINK](https://boytrend0108.github.io/react_carousel/) and add it to the PR description.
