@@ -6,7 +6,7 @@ type Props = {
   step: number,
   frameSize: number,
   animationDuration: string,
-  infinite: string,
+  infinite: boolean,
   shift: number,
   setShift: (value: number) => void,
 };
@@ -31,7 +31,7 @@ export const Carousel: React.FC<Props> = ({
 
     i = (i % (images.length - 1)) + 1;
 
-    if (infinite === 'true') {
+    if (infinite) {
       const loop = [...images].splice(i - 1, step);
 
       images.unshift();
@@ -49,7 +49,7 @@ export const Carousel: React.FC<Props> = ({
 
     i = (i % (images.length - 1)) + 1;
 
-    if (infinite === 'true' && shift === 0) {
+    if (infinite && shift === 0) {
       setShift(-1040);
 
       return;
@@ -94,7 +94,7 @@ export const Carousel: React.FC<Props> = ({
         className="Carousel__btn"
         type="button"
         onClick={() => moveLeft()}
-        disabled={shift === lastPosition && infinite === 'false'}
+        disabled={shift === lastPosition && !infinite}
       >
         Prev
       </button>
@@ -102,7 +102,7 @@ export const Carousel: React.FC<Props> = ({
       <button
         className="Carousel__btn"
         type="button"
-        disabled={shift === 0 && infinite === 'false'}
+        disabled={shift === 0 && !infinite}
         onClick={() => moveRight()}
         data-cy="next"
       >

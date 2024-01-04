@@ -10,8 +10,8 @@ type Props = {
   setFrameSize: (value: number) => void;
   animationDuration: string,
   setAnimationDuration: (value: string) => void
-  infinite: string,
-  setInfinite: (value: string) => void
+  infinite: boolean,
+  setInfinite: (value: boolean) => void
 };
 
 export const Settings: React.FC<Props> = ({
@@ -35,18 +35,6 @@ export const Settings: React.FC<Props> = ({
       default:
         setItemWidth(size);
     }
-  }
-
-  function checkBoxHandler(event: { target: { value: string; }; }) {
-    let isInfinite = event.target.value;
-
-    if (isInfinite === 'false') {
-      isInfinite = 'true';
-    } else {
-      isInfinite = 'false';
-    }
-
-    setInfinite(isInfinite);
   }
 
   return (
@@ -122,8 +110,8 @@ export const Settings: React.FC<Props> = ({
           type="checkbox"
           className="settings__item settings__item--checkbox"
           id="Infinite"
-          value={infinite}
-          onChange={checkBoxHandler}
+          checked={infinite}
+          onChange={event => setInfinite(event.target.checked)}
         />
         Infinite
       </label>
